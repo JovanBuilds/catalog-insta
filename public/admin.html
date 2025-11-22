@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Administración</title>
+    <link rel="stylesheet" href="admin-styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Login Screen -->
+    <div id="loginScreen" class="login-screen">
+        <div class="login-card">
+            <h1>🔐 Panel de Administración</h1>
+            <p>Ingresa tu contraseña para continuar</p>
+            <form id="loginForm">
+                <input type="password" id="passwordInput" class="input-field" placeholder="Contraseña" required>
+                <button type="submit" class="btn-primary">Ingresar</button>
+            </form>
+            <p id="loginError" class="error-message"></p>
+        </div>
+    </div>
+
+    <!-- Admin Panel -->
+    <div id="adminPanel" class="admin-panel" style="display: none;">
+        <!-- Header -->
+        <header class="admin-header">
+            <div class="container">
+                <h1>⚙️ Panel de Administración</h1>
+                <div class="header-actions">
+                    <a href="/" class="btn-secondary" target="_blank">Ver Catálogo</a>
+                    <button onclick="logout()" class="btn-logout">Cerrar Sesión</button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="admin-content">
+            <div class="container">
+                <!-- Tabs -->
+                <div class="tabs">
+                    <button class="tab active" onclick="switchTab('products')">Productos</button>
+                    <button class="tab" onclick="switchTab('config')">Configuración</button>
+                </div>
+
+                <!-- Products Tab -->
+                <div id="productsTab" class="tab-content">
+                    <div class="section-header">
+                        <h2>Gestión de Productos</h2>
+                        <button onclick="openProductModal()" class="btn-primary">+ Agregar Producto</button>
+                    </div>
+
+                    <div id="productsList" class="products-list">
+                        <!-- Products will be loaded here -->
+                    </div>
+                </div>
+
+                <!-- Config Tab -->
+                <div id="configTab" class="tab-content" style="display: none;">
+                    <div class="section-header">
+                        <h2>Configuración de la Tienda</h2>
+                    </div>
+
+                    <form id="configForm" class="form-card">
+                        <div class="form-group">
+                            <label for="configStoreName">Nombre de la Tienda</label>
+                            <input type="text" id="configStoreName" class="input-field" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="configStoreDescription">Descripción</label>
+                            <textarea id="configStoreDescription" class="input-field" rows="3"></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="configStoreLogo">URL del Logo</label>
+                            <input type="url" id="configStoreLogo" class="input-field">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="configWhatsappNumber">Número de WhatsApp (con código de país)</label>
+                            <input type="tel" id="configWhatsappNumber" class="input-field" placeholder="521234567890"
+                                required>
+                            <small>Ejemplo: 521234567890 (52 para México)</small>
+                        </div>
+
+                        <button type="submit" class="btn-primary">Guardar Configuración</button>
+                    </form>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Product Modal -->
+    <div id="productModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle">Agregar Producto</h2>
+                <button onclick="closeProductModal()" class="btn-close">×</button>
+            </div>
+
+            <form id="productForm">
+                <input type="hidden" id="productId">
+
+                <div class="form-group">
+                    <label for="productName">Nombre del Producto *</label>
+                    <input type="text" id="productName" class="input-field" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="productPrice">Precio *</label>
+                    <input type="number" id="productPrice" class="input-field" step="0.01" min="0" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="productDescription">Descripción</label>
+                    <textarea id="productDescription" class="input-field" rows="3"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="productImageUrl">URL de la Imagen</label>
+                    <input type="url" id="productImageUrl" class="input-field">
+                    <small>Puedes usar servicios como Imgur, Cloudinary o Google Drive</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="productCategory">Categoría</label>
+                    <input type="text" id="productCategory" class="input-field"
+                        placeholder="Ej: Flores, Comestibles, Accesorios">
+                </div>
+
+                <div class="form-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="productActive" checked>
+                        <span>Producto activo (visible en el catálogo)</span>
+                    </label>
+                </div>
+
+                <div class="modal-actions">
+                    <button type="button" onclick="closeProductModal()" class="btn-secondary">Cancelar</button>
+                    <button type="submit" class="btn-primary">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="admin.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,30 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "Producto de Ejemplo",
+      "price": 299.99,
+      "description": "Este es un producto de ejemplo para mostrar cómo se ve el catálogo",
+      "imageUrl": "https://via.placeholder.com/400x300/FFD700/000000?text=Producto+Ejemplo",
+      "category": "Ejemplo",
+      "active": true,
+      "createdAt": "2025-11-22T10:00:00.000Z"
+    },
+    {
+      "id": 1763836910685,
+      "name": "Crema Hidratante Natural",
+      "price": 299,
+      "description": "Crema facial con ingredientes naturales, ideal para todo tipo de piel",
+      "imageUrl": "https://via.placeholder.com/400x300/FFB6C1/000000?text=Crema+Facial",
+      "category": "Belleza",
+      "active": true,
+      "createdAt": "2025-11-22T18:41:50.685Z"
+    }
+  ],
+  "config": {
+    "storeName": "Mi Tienda",
+    "storeDescription": "Encuentra los mejores productos aquí",
+    "storeLogo": "https://via.placeholder.com/150",
+    "whatsappNumber": "521234567890"
+  }
+}
