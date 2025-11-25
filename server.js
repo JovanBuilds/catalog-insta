@@ -7,6 +7,19 @@ const path = require('path');
 const app = express();
 const PORT = process.env.PORT || 3000;
 const DATA_FILE = path.join(__dirname, 'data', 'products.json');
+
+app.use(cors());
+app.use(bodyParser.json());
+app.use(express.static(path.join(__dirname, 'public')));
+
+// Helper function to read product data
+async function readData() {
+  try {
+    const file = await fs.readFile(DATA_FILE, 'utf8');
+    return JSON.parse(file);
+  } catch (error) {
+    console.error('Error reading data:', error);
+    return { products: [], config: {} };
   }
 }
 
@@ -88,7 +101,7 @@ app.put('/api/admin/products/:id', async (req, res) => {
     }
 
     const data = await readData();
-    const productId = parseInt(req.params.id);
+    const productId = parseInt(req.params.id, 10);
     const index = data.products.findIndex(p => p.id === productId);
 
     if (index === -1) {
@@ -119,7 +132,7 @@ app.delete('/api/admin/products/:id', async (req, res) => {
     }
 
     const data = await readData();
-    const productId = parseInt(req.params.id);
+    const productId = parseInt(req.params.id, 10);
     data.products = data.products.filter(p => p.id !== productId);
 
     await writeData(data);
