@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Conqueror - Demo jugable</title>
+  <link rel="stylesheet" href="./conqueror-demo.css">
+</head>
+<body>
+  <header class="hero">
+    <div>
+      <p class="pill">Demo prototipo</p>
+      <h1>Conqueror: estrategia RTS inspirada en Social Empires</h1>
+      <p class="lede">Construye, fusiona unidades y prueba micro batallas rápidas en un tablero isométrico simplificado. La demo se centra en las interacciones esenciales: economía ligera, colocación de edificios, progresión por eras y combate táctico en tiempo real.</p>
+      <div class="tags">
+        <span>Unity 3D</span>
+        <span>Node + WebSockets (backend objetivo)</span>
+        <span>Mexico timeline</span>
+      </div>
+    </div>
+    <div class="actions">
+      <button id="start-skirmish" class="primary">Iniciar escaramuza</button>
+      <button id="reset-demo" class="ghost">Reiniciar</button>
+    </div>
+  </header>
+
+  <main class="layout">
+    <section class="panel">
+      <h2>Economía y era</h2>
+      <div class="resource-grid" id="resource-grid"></div>
+      <div class="era-row">
+        <div>
+          <label for="era-select">Era actual</label>
+          <select id="era-select"></select>
+        </div>
+        <button id="advance-era" class="ghost">Avanzar era</button>
+      </div>
+
+      <div class="panel-group">
+        <div>
+          <h3>Construcción</h3>
+          <p class="muted">Selecciona un edificio y colócalo en el tablero vacío.</p>
+          <div class="button-grid" id="building-buttons"></div>
+        </div>
+        <div>
+          <h3>Entrenamiento</h3>
+          <p class="muted">Recluta unidades ligadas al nivel de era actual.</p>
+          <div class="button-grid" id="unit-buttons"></div>
+        </div>
+      </div>
+
+      <div class="results" id="results">
+        <h3>Estado inmediato</h3>
+        <ul id="status-list"></ul>
+      </div>
+    </section>
+
+    <section class="board">
+      <div class="board-header">
+        <div>
+          <p class="pill">Tablero 12x12</p>
+          <h2>Construye, despliega y observa la IA de choque</h2>
+          <p class="muted">Celdas amarillas = zona aliada. Celdas rojas = zona enemiga. El enemigo genera refuerzos al iniciar la escaramuza.</p>
+        </div>
+        <div class="legend">
+          <span class="dot player"></span> Aliado
+          <span class="dot enemy"></span> Enemigo
+          <span class="dot building"></span> Edificio
+        </div>
+      </div>
+      <div id="grid" class="grid"></div>
+    </section>
+
+    <section class="panel log-panel">
+      <div class="board-header">
+        <div>
+          <p class="pill">Log en tiempo real</p>
+          <h2>Eventos clave</h2>
+        </div>
+      </div>
+      <ul id="log" class="log"></ul>
+    </section>
+  </main>
+
+  <section class="footnote">
+    <h3>Arquitectura propuesta</h3>
+    <p>Cliente ligero en Unity comunicándose por WebSockets para sincronizar movimientos y ataques. Las acciones persistentes (guardado de base, progreso de era, héroes desbloqueados) viajarían vía REST al backend NestJS/Node.js con base de datos NoSQL. Esta demo reproduce la lógica de tablero y el loop de combate con JavaScript puro para validar el diseño.</p>
+  </section>
+
+  <script src="./conqueror-demo.js"></script>
+</body>
+</html>

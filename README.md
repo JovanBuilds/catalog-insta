@@ -57,6 +57,9 @@ Aplicación web completa que permite a vendedores de Instagram mostrar sus produ
 ### Panel de Administración
 ![Admin Panel](https://via.placeholder.com/800x400/3483FA/FFFFFF?text=Panel+Admin)
 
+### Demo jugable: Conqueror (RTS)
+Lanza `npm start` y abre `http://localhost:3000/conqueror-demo.html` para probar un prototipo rápido inspirado en Social Empires: tablero 12x12, construcción ligera, entrenamiento de unidades por era y escaramuzas automáticas contra una base enemiga. Ideal para validar la arquitectura Unity + Node propuesta.
+
 ## 🚀 Instalación
 
 ### Requisitos Previos
